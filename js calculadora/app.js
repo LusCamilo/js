@@ -1,53 +1,43 @@
-console.log('Calculadora simples');
+console.log('-- CALCULADORA SIMPLES -- \n      ');
 
+//Import da biblioteca de entrada de dados
 var readline = require('readline');
+const { Z_PARTIAL_FLUSH } = require('zlib');
 
+
+//Instancia do objeto entradaDados
 var entradaDados = readline.createInterface({
+
     input: process.stdin,
     output: process.stdout
+
 });
 
-entradaDados.question('Digite o primeiro número: ', function (valor1){
-    let numero1 = parseFloat(valor1);
-    //typeof() - verifica qual o tipo de dado de uma variavel
 
-    entradaDados.question('Digite o segundo número: ', function (valor2){
+//Entrada do valor 1
+entradaDados.question('Digite o primeiro numero: \n', function (valor1){
+    //Declarando a variavel e convertendo o valor digitado pelo usuario em float
+    let numero1 = parseFloat(valor1);
+
+    //typeof -- varifica qual o tipo de dados de uma variavel ou objeto
+ 
+    entradaDados.question('Digite o segundo numero: \n', function (valor2){
         let numero2 = parseFloat(valor2);
 
-        if (isNaN(numero1) || isNaN(numero2)) {
-            console.log('Número inválido');
-            entradaDados.close();
-            exit();
-        }
-
-        entradaDados.question('Escolha a operação a ser calculada: Somar[+], Subtrair[-], Multiplicar[*], Dividir[/] ', function(option){
-            let operacao = option.toUpperCase();
+    
+        entradaDados.question('Escolha a operacao a ser calculada: somar[+], subtrair[-], multiplicar[*], dividir[/] \n', function(opcao){
+            //Declarando a variavel que vai receber o tipo de operaco matematica e convertendo o texto digitado em maiusculo.
+            //toUpperCase() -- converte em MAIUSCULO
+            //toLowerCase() -- converte em minusculo
+            let operacao = opcao.toUpperCase();
             let resultado;
 
-            if (operacao == 'somar' || operacao == '+') {
-                resultado = numero1 + numero2;
-            } else if (operacao == 'subtrair' || operacao == '-'){
-                resultado = numero1 - numero2;
-            } else if (operacao == 'multiplicar' || operacao == '*'){
-                resultado = numero1 * numero2;
-            } else if (operacao == 'dividir' || operacao == '/'){
-                if(numero2 == 0){
-                    console.log('Não existe divisão por 0');
-                    entradaDados.close();
-                    exit();
-                }
-                resultado = numero1 / numero2;
-            } else {
-                resultado = 'Operação inválida';
+            //Chama a funcao que realizara os calculos
+            if (resultado = calcular(numero1, numero2, operacao))
+            {
+                console.log('O resultado é: ' + resultado);
             }
-
-            if (typeof(resultado) == 'string') {
-                console.log(resultado);
-            } else{
-                console.log('Resultado da operação: ' + resultado);
-            }
-
-            entradaDados.close();
-        });
+            
+       });
     });
-});
+ });
